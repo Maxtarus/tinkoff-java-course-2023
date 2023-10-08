@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Нахождение общей длины видео в секундах")
-public class Task1Test {
+class Task1Test {
     @Test
     @DisplayName("Корректная строка без нулей c пробелами и без")
     void minutesToSeconds_shouldGetTotalSeconds_whenCorrectStringWithoutZeros() {

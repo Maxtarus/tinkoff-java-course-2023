@@ -4,12 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Task1 {
-    private static final int SECONDS_PER_MINUTE = 60;
+    private static final int SECONDS_IN_MINUTE = 60;
 
     private Task1() {
     }
 
     public static int minutesToSeconds(String str) {
+        //Проверка на null
         if (str == null) {
             throw new IllegalArgumentException("Строка не может быть null!");
         }
@@ -46,6 +47,6 @@ public final class Task1 {
 
         final int minutesNumber = Integer.parseInt(minutes);
         final int secondsNumber = Integer.parseInt(seconds);
-        return minutesNumber * SECONDS_PER_MINUTE + secondsNumber;
+        return minutesNumber * SECONDS_IN_MINUTE + secondsNumber;
     }
 }
