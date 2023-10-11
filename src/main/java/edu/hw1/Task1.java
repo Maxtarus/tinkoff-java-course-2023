@@ -1,5 +1,6 @@
 package edu.hw1;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,14 +11,9 @@ public final class Task1 {
     }
 
     public static int minutesToSeconds(String str) {
-        //Проверка на null
-        if (str == null) {
-            throw new IllegalArgumentException("Строка не может быть null!");
-        }
-
+        Objects.requireNonNull(str);
         String videoLength = str.trim();
 
-        //Проверка на пустую строку с учётом пробелов
         if (videoLength.isEmpty()) {
             return -1;
         }

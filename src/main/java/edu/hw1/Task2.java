@@ -12,14 +12,7 @@ public final class Task2 {
             return 1;
         }
 
-        long nonNegativeNumber;
-
-        //Проверка на отрицательное число
-        if (number < 0) {
-            nonNegativeNumber = -number;
-        } else {
-            nonNegativeNumber = number;
-        }
+        long nonNegativeNumber = (number >= 0) ? number : -number;
 
         int digitsNumber = 0;
 

@@ -35,7 +35,7 @@ class Task4Test {
 
     @Test
     @DisplayName("Null-строка")
-    void fixString_shouldThrowIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> Task4.fixString(null));
+    void fixString_shouldThrowNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Task4.fixString(null));
     }
 }

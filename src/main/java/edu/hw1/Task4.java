@@ -1,15 +1,13 @@
 package edu.hw1;
 
+import java.util.Objects;
+
 public final class Task4 {
     private Task4() {
     }
 
     public static String fixString(String wrongString) {
-        //Проверка на null
-        if (wrongString == null) {
-            throw new IllegalArgumentException("Строка не может быть null!");
-        }
-
+        Objects.requireNonNull(wrongString);
         StringBuilder rightString = new StringBuilder();
         int wrongStringLength = wrongString.length();
 
