@@ -3,6 +3,7 @@ package edu.project1;
 import edu.project1.dictionary.Dictionary;
 import edu.project1.guess_result.Defeat;
 import edu.project1.guess_result.GuessResult;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import org.jetbrains.annotations.NotNull;
@@ -10,7 +11,8 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings({"RegexpSinglelineJava", "MultipleStringLiterals"})
 public class ConsoleHangman {
     private static final Scanner INPUT = new Scanner(System.in);
-    private static final ResourceBundle RB = ResourceBundle.getBundle("hangman_messages_ru_Ru");
+    private static final ResourceBundle RB = ResourceBundle
+        .getBundle("hangman_messages_ru_Ru", Locale.getDefault());
     private final Session session;
 
     public Session getSession() {
