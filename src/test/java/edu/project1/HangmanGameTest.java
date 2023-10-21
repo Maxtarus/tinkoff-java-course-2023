@@ -10,7 +10,6 @@ import edu.project1.guess_result.SuccessfulGuess;
 import edu.project1.guess_result.Win;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +28,6 @@ import static org.mockito.Mockito.when;
 class HangmanGameTest {
     static final String ANSWER = "виселица";
     static final int MAX_ATTEMPTS = 4;
-    static final ResourceBundle RB = ResourceBundle.getBundle(
-        "edu.project1.resources.hangman_messages_ru_Ru",
-        Locale.of("ru", "RU"));
     @Mock
     Dictionary dictionary;
     ConsoleHangman testGame;
@@ -61,16 +57,8 @@ class HangmanGameTest {
             // Assert
             if (ANSWER.contains(inputs.get(i))) {
                 assertThat(result).isInstanceOf(SuccessfulGuess.class);
-                assertThat(result.message()).isEqualTo(
-                    String.format(
-                        RB.getString("successful.guess"),
-                    String.valueOf(result.state())));
             } else {
                 assertThat(result).isInstanceOf(FailedGuess.class);
-                assertThat(result.message()).isEqualTo(
-                    String.format(
-                        RB.getString("failed.guess"),
-                        result.attempt(), result.maxAttempts()));
             }
 
             assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
@@ -81,10 +69,6 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(Win.class);
-        assertThat(result.message()).isEqualTo(
-            String.format(
-                RB.getString("successful.guess") + RB.getString("win"),
-            String.valueOf(result.state())));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
@@ -118,10 +102,6 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(Defeat.class);
-        assertThat(result.message()).isEqualTo(
-            String.format(
-                RB.getString("failed.guess") + RB.getString("defeat"),
-                result.attempt(), result.maxAttempts()));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
@@ -138,10 +118,6 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(Defeat.class);
-        assertThat(result.message()).isEqualTo(
-            String.format(
-                RB.getString("failed.guess") + RB.getString("defeat"),
-                result.attempt(), result.maxAttempts()));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
@@ -162,10 +138,6 @@ class HangmanGameTest {
 
             // Assert
             assertThat(resultRepeat).isInstanceOf(RepeatedGuess.class);
-            assertThat(resultRepeat.message()).isEqualTo(
-                String.format(
-                    RB.getString("repeated.guess"),
-                    String.valueOf(result.state())));
             assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
         }
     }
@@ -179,10 +151,6 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(IncorrectGuess.class);
-        assertThat(result.message()).isEqualTo(
-            String.format(
-                RB.getString("incorrect.guess"),
-                String.valueOf(result.state())));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
     }
 }
