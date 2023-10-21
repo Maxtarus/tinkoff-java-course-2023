@@ -11,7 +11,7 @@ public record IncorrectGuess(
 
     @Override
     public @NotNull String message() {
-        var rb = ResourceBundle.getBundle("hangman_messages_ru_Ru");
+        var rb = ResourceBundle.getBundle("hangman");
         return String.format(rb.getString("incorrect.guess"), String.valueOf(state));
     }
 }

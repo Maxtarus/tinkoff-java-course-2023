@@ -10,7 +10,7 @@ public record RepeatedGuess(
 ) implements GuessResult {
     @Override
     public @NotNull String message() {
-        var rb = ResourceBundle.getBundle("hangman_messages_ru_Ru");
+        var rb = ResourceBundle.getBundle("hangman");
         return String.format(rb.getString("repeated.guess"), String.valueOf(state));
     }
 }

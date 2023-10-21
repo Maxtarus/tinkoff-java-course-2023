@@ -43,6 +43,7 @@ class HangmanGameTest {
     @ValueSource(strings = { "ивласце", "фивласце", "эживласце", "ъхзивласце" })
     @DisplayName("Игрок победил")
     void testPlayerWon(@NotNull String input) {
+        ResourceBundle rb = testGame.getRb();
 
         // Arrange
         List<String> inputs = new ArrayList<>();
@@ -57,8 +58,16 @@ class HangmanGameTest {
             // Assert
             if (ANSWER.contains(inputs.get(i))) {
                 assertThat(result).isInstanceOf(SuccessfulGuess.class);
+                assertThat(result.message()).isEqualTo(
+                    String.format(
+                        rb.getString("successful.guess"),
+                    String.valueOf(result.state())));
             } else {
                 assertThat(result).isInstanceOf(FailedGuess.class);
+                assertThat(result.message()).isEqualTo(
+                    String.format(
+                        rb.getString("failed.guess"),
+                        result.attempt(), result.maxAttempts()));
             }
 
             assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
@@ -69,6 +78,10 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(Win.class);
+        assertThat(result.message()).isEqualTo(
+            String.format(
+                rb.getString("successful.guess") + rb.getString("win"),
+            String.valueOf(result.state())));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
@@ -77,6 +90,7 @@ class HangmanGameTest {
         "ивлаъхэж", "ивласъхэж", "ивласцъхэж"})
     @DisplayName("Игрок проиграл")
     void testPlayerDefeated(@NotNull String input) {
+        ResourceBundle rb = testGame.getRb();
 
         // Arrange
         List<String> inputs = new ArrayList<>();
@@ -102,22 +116,30 @@ class HangmanGameTest {
 
         // Assert
         assertThat(result).isInstanceOf(Defeat.class);
+        assertThat(result.message()).isEqualTo(
+            String.format(
+                rb.getString("failed.guess") + rb.getString("defeat"),
+                result.attempt(), result.maxAttempts()));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
     @Test
     @DisplayName("Игрок сдался")
     void testGiveUpCommand() {
+        ResourceBundle rb = testGame.getRb();
+
         // Arrange
-        String input = ResourceBundle
-            .getBundle("hangman_messages_ru_Ru")
-            .getString("giveup.command");
+        String input = rb.getString("giveup.command");
 
         // Act
         GuessResult result = testGame.tryGuess(input);
 
         // Assert
         assertThat(result).isInstanceOf(Defeat.class);
+        assertThat(result.message()).isEqualTo(
+            String.format(
+                rb.getString("failed.guess") + rb.getString("defeat"),
+                result.attempt(), result.maxAttempts()));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(true);
     }
 
@@ -125,6 +147,8 @@ class HangmanGameTest {
     @ValueSource(ints = { 2, 3, 4, 5})
     @DisplayName("Игрок совершил повторный ввод буквы")
     void testRepeatedInput(int argument) {
+        ResourceBundle rb = testGame.getRb();
+
         // Arrange
         String input = String.valueOf(ANSWER.charAt(0));
         GuessResult result = testGame.tryGuess(input);
@@ -138,6 +162,10 @@ class HangmanGameTest {
 
             // Assert
             assertThat(resultRepeat).isInstanceOf(RepeatedGuess.class);
+            assertThat(resultRepeat.message()).isEqualTo(
+                String.format(
+                    rb.getString("repeated.guess"),
+                    String.valueOf(result.state())));
             assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
         }
     }
@@ -146,11 +174,17 @@ class HangmanGameTest {
     @ValueSource(strings = { "", "*", "1", "f", "бб"})
     @DisplayName("Игрок совершил некорректный ввод")
     void testUncorrectedInput(String input) {
+        ResourceBundle rb = testGame.getRb();
+
         // Act
         GuessResult result = testGame.tryGuess(input);
 
         // Assert
         assertThat(result).isInstanceOf(IncorrectGuess.class);
+        assertThat(result.message()).isEqualTo(
+            String.format(
+                rb.getString("incorrect.guess"),
+                String.valueOf(result.state())));
         assertThat(testGame.getSession().isGameFinished()).isEqualTo(false);
     }
 }
