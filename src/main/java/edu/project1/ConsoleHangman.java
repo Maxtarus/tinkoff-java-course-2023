@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public class ConsoleHangman {
     private static final Scanner INPUT = new Scanner(System.in);
     private static final ResourceBundle RB = ResourceBundle.getBundle(
-        "edu.project1.resources.hangman_messages_ru_Ru",
+        "edu.project1.resources.hangman_messages",
         Locale.of("ru", "RU"));
     private final Session session;
 
