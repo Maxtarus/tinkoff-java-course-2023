@@ -19,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
@@ -34,6 +35,7 @@ class HangmanGameTest {
 
     @BeforeEach
     void initNewSession() {
+        MockitoAnnotations.openMocks(this);
         when(dictionary.getRandomWord()).thenReturn(ANSWER);
         testGame = new ConsoleHangman(dictionary, MAX_ATTEMPTS);
     }
