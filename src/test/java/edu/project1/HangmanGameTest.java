@@ -30,7 +30,7 @@ class HangmanGameTest {
     static final String ANSWER = "виселица";
     static final int MAX_ATTEMPTS = 4;
     static final ResourceBundle RB = ResourceBundle.getBundle("hangman_messages_ru_Ru",
-        Locale.getDefault());
+        Locale.of("ru", "RU"));
     @Mock
     Dictionary dictionary;
     ConsoleHangman testGame;
