@@ -11,8 +11,9 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings({"RegexpSinglelineJava", "MultipleStringLiterals"})
 public class ConsoleHangman {
     private static final Scanner INPUT = new Scanner(System.in);
-    private static final ResourceBundle RB = ResourceBundle
-        .getBundle("hangman_messages_ru_Ru", Locale.getDefault());
+    private static final ResourceBundle RB = ResourceBundle.getBundle(
+        "edu.project1.resources.hangman_messages_ru_Ru",
+        Locale.of("ru", "RU"));
     private final Session session;
 
     public Session getSession() {
