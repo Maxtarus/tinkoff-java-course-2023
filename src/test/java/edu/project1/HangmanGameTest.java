@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 class HangmanGameTest {
     static final String ANSWER = "виселица";
     static final int MAX_ATTEMPTS = 4;
-    static final ResourceBundle rb = ResourceBundle.getBundle("hangman_messages_ru_Ru", Locale.of("ru"));
+    static final ResourceBundle rb = ResourceBundle.getBundle("hangman_messages_ru_Ru", new Locale("ru", "RU"));
     @Mock
     Dictionary dictionary;
     ConsoleHangman testGame;
