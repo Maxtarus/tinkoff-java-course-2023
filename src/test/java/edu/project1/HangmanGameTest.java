@@ -10,6 +10,7 @@ import edu.project1.guess_result.SuccessfulGuess;
 import edu.project1.guess_result.Win;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 class HangmanGameTest {
     static final String ANSWER = "виселица";
     static final int MAX_ATTEMPTS = 4;
-    static final ResourceBundle rb = ResourceBundle.getBundle("hangman_messages_ru_Ru");
+    static final ResourceBundle rb = ResourceBundle.getBundle("hangman_messages_ru_Ru", Locale.of("ru"));
     @Mock
     Dictionary dictionary;
     ConsoleHangman testGame;
