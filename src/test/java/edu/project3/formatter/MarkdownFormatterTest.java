@@ -15,6 +15,7 @@ public class MarkdownFormatterTest {
         Metric metric = new Metric("Test", List.of("Test column|Number", "first|1", "second|2"));
         String formattedString = """
             #### Test
+
             |Test column|Number|
             |:---------:|:----:|
             |      first|     1|
