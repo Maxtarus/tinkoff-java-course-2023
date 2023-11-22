@@ -14,32 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class DiskMap implements Map<String, String> {
     private final Map<String, String> diskMap = new HashMap<>();
 
-    public void loadFromFile(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] keyValue = line.split(":");
-                diskMap.put(keyValue[0], keyValue[1]);
-            }
-         } catch (IOException e) {
-            throw new RuntimeException();
-        }
-    }
-
-    public void saveToFile(String fileName) {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (var entry : diskMap.entrySet()) {
-                sb.append(entry.getKey())
-                    .append(":")
-                    .append(entry.getValue())
-                    .append("\n");
-            }
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-    }
+    private static final String SEPARATOR = ":";
 
     // Default methods
     @Override
@@ -103,6 +78,33 @@ public class DiskMap implements Map<String, String> {
     @Override
     public Set<Entry<String, String>> entrySet() {
         return diskMap.entrySet();
+    }
+
+    public void loadFromFile(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] keyValue = line.split(SEPARATOR);
+                diskMap.put(keyValue[0], keyValue[1]);
+            }
+         } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public void saveToFile(String fileName) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (var entry : diskMap.entrySet()) {
+                sb.append(entry.getKey())
+                    .append(":")
+                    .append(entry.getValue())
+                    .append("\n");
+            }
+            writer.write(sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }
 
