@@ -31,6 +31,7 @@
 
         <jetbrains-annotations.version>24.0.1</jetbrains-annotations.version>
         <log4j.version>2.20.0</log4j.version>
+        <projectlombok.version>1.18.30</projectlombok.version>
 
         <junit.version>5.10.0</junit.version>
         <assertj.version>3.24.2</assertj.version>
@@ -107,6 +108,12 @@
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
             <version>${bytebuddy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${projectlombok.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
