@@ -11,7 +11,6 @@ public class FileSearchTask extends RecursiveTask<List<String>> {
     private final File file;
     private final long size;
     private final String extension;
-
     @Serial
     private static final long serialVersionUID = 4049673324822769377L;
 

@@ -6,16 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
-/**
- * The {@code DirSearchTask} that recursively searches for directories with a specified number of files or more.
- * The search is performed in a parallel manner using the Fork-Join framework.
- */
+
 public class DirSearchTask extends RecursiveTask<List<String>> {
     private final File directory;
     private final int numberOfFiles;
 
-//    @Serial
-//    private static final long serialVersionUID = 752150994361085757L;
+    @Serial
+    private static final long serialVersionUID = 752150994361085757L;
 
     public DirSearchTask(File directory, int numberOfFiles) {
         this.directory = directory;
