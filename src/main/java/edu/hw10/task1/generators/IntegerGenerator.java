@@ -1,7 +1,6 @@
 package edu.hw10.task1.generators;
 
 import edu.hw10.task1.utils.GeneratorUtils;
-
 import java.lang.reflect.Parameter;
 import java.util.concurrent.ThreadLocalRandom;
 
